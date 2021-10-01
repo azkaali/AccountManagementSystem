@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 import java.io.*;
 
-class account {
+class account implements Serializable{
 	protected int accountNo;
 	protected double balance;
 	protected double transactionAmount;
@@ -105,7 +105,56 @@ class account {
 			
 	}
 	
-	  
+	public static ArrayList<account>read(){
+		ArrayList<account> list = new ArrayList<account>();
+        try {
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("acc.dat"));
+            while (true) {
+                account obj = (account) input.readObject();
+                list.add(obj);
+            }
+        } catch (ClassNotFoundException e) {
+        } catch (FileNotFoundException e) {
+        } catch (EOFException e) {
+        } catch (IOException e) {
+        }
+        return list;
+	
+	}
+	
+	
+
+    public static void write(account s) {
+        try {
+            File f = new File("acc.dat");
+            ObjectOutputStream oos;
+            if (f.exists()) {
+                oos = new MyObjectOutputStream(new FileOutputStream(f, true));
+            } else {
+                oos = new ObjectOutputStream(new FileOutputStream(f, true));
+            }
+            oos.writeObject(s);
+            oos.close();
+
+        } catch (FileNotFoundException e) {
+        } catch (EOFException e) {
+        } catch (IOException e) {
+        }
+    }
+    
+    public static account searchAccount(int m) {
+        ArrayList<account> list = read();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getAccountno() == (m)) {
+                return list.get(i);
+            }
+
+        }
+        return null;
+
+    }
+
+
 	//abstract void makeDeposit(double amount);
 	//abstract void makeWithdrawal(double amount);
 
@@ -113,6 +162,7 @@ class account {
     public String toString() {
         return "account{" + "accountNo=" + accountNo + ", balance=" + balance + ", dateCreated=" + dateCreated + ", transactionAmount=" + transactionAmount + "name"+C1.getName() + "Address"+C1.getAddress()+"phone no"+C1.getPhoneNo();
     }
+    
 
 
 }

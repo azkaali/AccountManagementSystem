@@ -1,22 +1,24 @@
+import java.io.IOException;
+
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
 
-class menu extends main{
-	
+class menu {
+	private static final ArrayList<account> accounts = null;
+	private static final account[] accountsArray = null;
+	customer C1;
+	double interestRate;
+	int noOfAccounts=0;	
+	account acc[]=new account[20];
+	account account;
+	Scanner sc=new Scanner(System.in); 
 	public void menu()
 	{
 		
 	}
-	customer C1;
-	double interestRate;
-	int noOfAccounts=0;
-	Scanner sc=new Scanner(System.in);
-	
-	account acc[]=new account[20];
-	
-	account account;
 	
 	int menu(Scanner sc)
 	{
@@ -48,7 +50,7 @@ class menu extends main{
 		switch(a)
 		{
 		case "a":
-			accountsArray.add(account);
+			account.write(account);
 			newAccount(sc);
 		break;
 		case "b":
@@ -57,11 +59,10 @@ class menu extends main{
 			closeAccount(ac);
 		}
 		
-		//acc[noOfAccounts++]=newAccount(sc);
 		   
 		break;
 	case 2:
-			findAccount(accountsArray);
+			findAccount(account.read());
 		break;
 	case 3:
 			operationsMenu(sc);
@@ -101,11 +102,18 @@ class menu extends main{
 		System.out.println("Select Account Type \n");
 		System.out.println("1. Checkings account\n");
 		System.out.println("2. Savings account\n");
-		 int selected;
+		int selected = 0;
 		
 			 System.out.println("Select 1 or 2");
-			 selected=sc.nextInt();
-		
+			 try {
+   				 selected=sc.nextInt();
+   			 }
+   			 catch(Exception e) {
+    			System.out.println("Please enter correct value");
+   				System.out.println("Select 1 or 2");
+   				selected=sc.nextInt();
+   			 }
+   		
 		 return selected;
 	}
 	
@@ -115,8 +123,10 @@ class menu extends main{
 	account newAccount(Scanner sc)
 	{
 		System.out.println("Enter a 4 digit number which will be your account no \n");
+			
 		int accountNo = sc.nextInt();  
 		System.out.println("Your account number is "+accountNo);
+		
 		
 		int selected=accountTypes(sc);
 		if(selected==1)
@@ -166,14 +176,14 @@ class menu extends main{
 			
 			account=new savingsAccount(accountNo,balance,dateCreated,C1);
 		}
-		accountsArray.add(account);
+		account.write(account);
 		return account;
 	}
 	//closing an account
 	void closeAccount(int accno){
 	      for(account b :accountsArray){
 	          if (b.getAccountno() == accno){
-	              accountsArray.remove(b);
+	              account.searchAccount(accno);
 	          }
 	          
 	      }
@@ -290,7 +300,7 @@ class menu extends main{
                                 c.transferAmount(transAmount,transAccount);
                                 }
                             break;
-                            
+                           
                             case 6:
                                 System.out.println("Enter the account for which you wish to calculate Zakat? \n ");
                                 int zakatAccount=sc.nextInt();
@@ -363,7 +373,7 @@ class menu extends main{
 		account a = null;
 		String s;
 		Scanner sc=new Scanner(System.in);
-		for(int i = 0; i <accountsArray.size(); i++)
+		for(int i = 0; i <((List<account>) account).size(); i++)
 		{
 		        System.out.println("Printing all Details \n");
 		        s=a.toString();		    
@@ -379,7 +389,7 @@ class menu extends main{
 		savingsAccount s=null;
 		String all;
 		Scanner sc=new Scanner(System.in);
-		for(int i = 0; i <accountsArray.size(); i++)
+		for(int i = 0; i <((List<account>) account).size(); i++)
 		{
 			 System.out.println("Printing all Deductions of checkings Accounts \n");
 		    all=c.displayAllDeductions(i,tax);

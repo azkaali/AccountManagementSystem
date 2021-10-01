@@ -1,5 +1,15 @@
+import java.io.EOFException;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.ArrayList;
 
-class savingsAccount extends account {
+class savingsAccount extends account implements Serializable {
 
 	double interestRate;
 	double interest;
@@ -68,6 +78,56 @@ class savingsAccount extends account {
 			System.out.println("You are not bound to pay Zakat yet \n");
 		return -1;
 	}
+	
+	public static ArrayList<account>read(){
+		ArrayList<account> list = new ArrayList<account>();
+        try {
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("saving.dat"));
+            while (true) {
+                account obj = (account) input.readObject();
+                list.add(obj);
+            }
+        } catch (ClassNotFoundException e) {
+        } catch (FileNotFoundException e) {
+        } catch (EOFException e) {
+        } catch (IOException e) {
+        }
+        return list;
+	
+	}
+	
+	
+
+    public static void writeCity(account s) {
+        try {
+            File f = new File("saving.dat");
+            ObjectOutputStream oos;
+            if (f.exists()) {
+                oos = new MyObjectOutputStream(new FileOutputStream(f, true));
+            } else {
+                oos = new ObjectOutputStream(new FileOutputStream(f, true));
+            }
+            oos.writeObject(s);
+            oos.close();
+
+        } catch (FileNotFoundException e) {
+        } catch (EOFException e) {
+        } catch (IOException e) {
+        }
+    }
+    
+    public static account searchAccount(int m) {
+        ArrayList<account> list = read();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getAccountno() == (m)) {
+                return list.get(i);
+            }
+
+        }
+        return null;
+
+    }
+
 	
 	String displayAllDeductions(double zakat)
 	{

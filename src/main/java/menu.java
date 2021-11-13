@@ -19,6 +19,16 @@ class menu {
 	{
 		
 	}
+	public void dbmenu() throws IOException {
+		DBMenu m = null;
+		try {
+			m = new DBMenu();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		m.menu();
+	}
 	
 	int menu(Scanner sc)
 	{

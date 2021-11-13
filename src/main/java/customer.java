@@ -1,4 +1,9 @@
 import java.util.*;
+
+//import org.junit.Test;
+
+//import static org.junit.Assert.assertEquals;
+
 import java.io.*;
 
 class customer {
@@ -31,7 +36,10 @@ class customer {
 	  this.address=address;
   }
 
-
+  public int mode(int a,int b) {
+	  return(a%b);
+  }
+ 
   String getPhoneNo() {
         return phoneNo;
     }

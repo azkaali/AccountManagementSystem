@@ -3,7 +3,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.Serializable;
 
-public class MyObjectOutputStream extends ObjectOutputStream implements Serializable
+public class MyObjectOutputStream extends ObjectOutputStream 
 {
 	
 	    public MyObjectOutputStream() throws IOException

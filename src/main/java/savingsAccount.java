@@ -82,10 +82,10 @@ class savingsAccount extends account implements Serializable {
 	public static ArrayList<account>read(){
 		ArrayList<account> list = new ArrayList<account>();
         try {
-            ObjectInputStream input = new ObjectInputStream(new FileInputStream("saving.dat"));
+            ObjectInputStream input = new ObjectInputStream(new FileInputStream("saving.txt"));
             while (true) {
                 account obj = (account) input.readObject();
-                list.add(obj);
+                list.add(obj); 
             }
         } catch (ClassNotFoundException e) {
         } catch (FileNotFoundException e) {
@@ -98,9 +98,9 @@ class savingsAccount extends account implements Serializable {
 	
 	
 
-    public static void writeCity(account s) {
+    public static void write(account s) {
         try {
-            File f = new File("saving.dat");
+            File f = new File("saving.txt");
             ObjectOutputStream oos;
             if (f.exists()) {
                 oos = new MyObjectOutputStream(new FileOutputStream(f, true));
@@ -110,7 +110,7 @@ class savingsAccount extends account implements Serializable {
             oos.writeObject(s);
             oos.close();
 
-        } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {	
         } catch (EOFException e) {
         } catch (IOException e) {
         }

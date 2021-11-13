@@ -76,6 +76,7 @@ public class AMSTest {
 		
 	}
 	
+	
 	@Test
 	public void displayAllDeductions()
 	{

@@ -89,6 +89,7 @@ class checkingsAccount extends account implements Serializable {
         }
     }
     
+    /*
     public static account searchAccount(int m) {
         ArrayList<account> list = read();
         for (int i = 0; i < list.size(); i++) {
@@ -100,7 +101,7 @@ class checkingsAccount extends account implements Serializable {
         return null;
 
     }
-
+*/
 	
 	
 	

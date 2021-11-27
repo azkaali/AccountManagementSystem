@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import java.io.*;
 
 class account implements Serializable{
-	protected int accountNo;
-	protected double balance;
+	protected String accountNo;
+	protected String balance;
 	protected double transactionAmount;
 	protected String dateCreated;
     protected customer C1;
-
-    account(int accountNo,int balance,String dateCreated,customer C1)
+    protected String acc_Type;
+    account(String accountNo,String balance,String dateCreated,customer C1)
     {
     	this.accountNo=accountNo;
     	this.balance=balance;
@@ -26,19 +26,22 @@ class account implements Serializable{
     {
     	
     }
-    int getAccountno()
+    public account(int accountNo2, int balance2, String dateCreated2, customer c12) {
+		// TODO Auto-generated constructor stub
+	}
+	String getAccountno()
     {
     	return accountNo;
     }
-    void setAccountno(int accountNo)
+    void setAccountno(String accountNo)
     {
     	 this.accountNo=accountNo;
     }
-    double getBalance()
+    String getBalance()
     {
     	return balance;
     }
-    void setBalance(double balance)
+    void setBalance(String balance)
     {
     	this.balance=balance;
     }
@@ -141,7 +144,7 @@ class account implements Serializable{
         } catch (IOException e) {
         }
     }
-    
+    /*
     public static account searchAccount(int m) {
         ArrayList<account> list = read();
         for (int i = 0; i < list.size(); i++) {
@@ -153,6 +156,7 @@ class account implements Serializable{
         return null;
 
     }
+    */
 
 
 	//abstract void makeDeposit(double amount);
@@ -162,6 +166,14 @@ class account implements Serializable{
     public String toString() {
         return "account{" + "accountNo=" + accountNo + ", balance=" + balance + ", dateCreated=" + dateCreated + ", transactionAmount=" + transactionAmount + "name"+C1.getName() + "Address"+C1.getAddress()+"phone no"+C1.getPhoneNo();
     }
+	public String getAcc_type() {
+		// TODO Auto-generated method stub
+		return acc_Type;
+	}
+	public String getAddress() {
+		// TODO Auto-generated method stub
+		return null;
+	}
     
 
 

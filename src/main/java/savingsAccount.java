@@ -115,7 +115,7 @@ class savingsAccount extends account implements Serializable {
         } catch (IOException e) {
         }
     }
-    
+    /*
     public static account searchAccount(int m) {
         ArrayList<account> list = read();
         for (int i = 0; i < list.size(); i++) {
@@ -128,7 +128,7 @@ class savingsAccount extends account implements Serializable {
 
     }
 
-	
+	*/
 	String displayAllDeductions(double zakat)
 	{
 		String s="Your deductions include Zakat, the amount is"+ zakat;

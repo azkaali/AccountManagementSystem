@@ -66,13 +66,13 @@ class menu {
 		case "b":
 			System.out.println("Enter account number you wish to close\n");
 			int ac=sc.nextInt();
-			closeAccount(ac);
+		//	closeAccount(ac);
 		}
 		
 		   
 		break;
 	case 2:
-			findAccount(account.read());
+			//findAccount(account.read());
 		break;
 	case 3:
 			operationsMenu(sc);
@@ -189,6 +189,7 @@ class menu {
 		account.write(account);
 		return account;
 	}
+	/*
 	//closing an account
 	void closeAccount(int accno){
 	      for(account b :accountsArray){
@@ -199,8 +200,9 @@ class menu {
 	      }
 	      
 	  }
-	
+	*/
 	//2.
+	/*
 	void findAccount(ArrayList<account> accountsArray )
 	{ 		
 			int accountNo;
@@ -220,7 +222,7 @@ class menu {
 			}
 		 operationsMenu(sc);
 	}
-	
+	*/
 	//3.
 	
 	int operationsMenu(Scanner sc)
@@ -253,12 +255,12 @@ class menu {
                             break;
                             case 2:
                                 System.out.println("Enter amount you want to withdraw. ");
-                                int bal=(int) account.balance;
+                              //  int bal=(int) account.balance;
                                 int am=sc.nextInt();
                                 if (account instanceof checkingsAccount){
                                 checkingsAccount c = new checkingsAccount();
                                 c = (checkingsAccount)account;
-                                c.makeWithdrawal(am,bal);
+                              //  c.makeWithdrawal(am,bal);
                                }else {
                                 savingsAccount c = new savingsAccount();
                                 c = (savingsAccount)account;
